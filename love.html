@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Love Letter in Envelope</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f3e5cb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .envelope {
+      position: relative;
+      width: 320px;
+      height: 200px;
+      background: #fef7e0;
+      border: 2px solid #d4b28a;
+      border-radius: 6px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
+
+    .flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(145deg, #e3c6a8, #f3e0c2);
+      clip-path: polygon(0 0, 100% 0, 50% 50%);
+      z-index: 2;
+      transition: 0.5s ease;
+    }
+
+    .letter {
+      position: absolute;
+      top: 100%;
+      left: 10%;
+      width: 80%;
+      height: 120px;
+      background: white;
+      border-radius: 4px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      padding: 10px;
+      text-align: center;
+      line-height: 1.4;
+      transition: top 0.7s ease;
+      z-index: 1;
+    }
+
+    .open-btn {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 6px 14px;
+      background-color: #d97706;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 3;
+      animation: bounce 1s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, -8px); }
+    }
+
+    .envelope.open .letter {
+      top: 10px;
+    }
+
+    .envelope.open .flap {
+      transform: rotateX(180deg);
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="envelope" id="envelope">
+    <div class="flap"></div>
+    <div class="letter">
+      <h3>Dear Love ❤️</h3>
+      <p>Do you know that I love you very much?<br>
+--- Rakib</p>
+    </div>
+    <button class="open-btn" onclick="openLetter()">Open</button>
+  </div>
+
+  <script>
+    function openLetter() {
+      document.getElementById("envelope").classList.add("open");
+    }
+  </script>
+</body>
+</html>
